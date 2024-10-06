@@ -16,6 +16,10 @@ public class TestSpring {
 
         //# Решение: (подключаем  зависимости в applicationContext)
         //Передаем в параметры: id - нашего Бина, и возвращаемый тип
+//        PlayerMusic playerMusic = context.getBean("PlayerMusic", PlayerMusic.class);
+//        System.out.println(playerMusic.getMusic());  // классическая ClassicMusic
+
+        //Альтернатива: внедрение через setter
         PlayerMusic playerMusic = context.getBean("PlayerMusic", PlayerMusic.class);
         System.out.println(playerMusic.getMusic());  // классическая ClassicMusic
     }

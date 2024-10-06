@@ -16,11 +16,20 @@
           class="ico.dependency_injection.ClassicMusic">
     </bean>
 
-
     <!--Вот это добавили, чтобы в ручную не создавать-->
+    <!--
     <bean id="PlayerMusic"
           class="ico.dependency_injection.PlayerMusic">
         <constructor-arg ref="ClassicMusic"/>
     </bean>
+    -->
+
+    <!-- Для создания зависимости через Setter   -->
+    <bean id="PlayerMusic"
+          class="ico.dependency_injection.PlayerMusic">
+        <property name="music" ref  = "ClassicMusic"/>
+        <!-- Spring значет про camelCase, и ое певередет   setMusic в music -->
+    </bean>
+
 
 </beans>
