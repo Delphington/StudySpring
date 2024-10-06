@@ -2,6 +2,15 @@ package ico.dependency_injection;
 
 public class PlayerMusic {
     Music music;
+    int time;
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     PlayerMusic(Music music) {
         this.music = music;

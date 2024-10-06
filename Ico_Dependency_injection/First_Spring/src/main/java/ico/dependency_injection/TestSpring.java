@@ -20,7 +20,10 @@ public class TestSpring {
 //        System.out.println(playerMusic.getMusic());  // классическая ClassicMusic
 
         //Альтернатива: внедрение через setter
+        //Spring создает объект через пустой конструктор и вызывает метод Setter
         PlayerMusic playerMusic = context.getBean("PlayerMusic", PlayerMusic.class);
         System.out.println(playerMusic.getMusic());  // классическая ClassicMusic
+        System.out.println(playerMusic.getTime());  // классическая ClassicMusic
+
     }
 }
