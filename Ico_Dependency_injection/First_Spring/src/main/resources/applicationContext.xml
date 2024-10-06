@@ -16,4 +16,11 @@
           class="ico.dependency_injection.ClassicMusic">
     </bean>
 
+
+    <!--Вот это добавили, чтобы в ручную не создавать-->
+    <bean id="PlayerMusic"
+          class="ico.dependency_injection.PlayerMusic">
+        <constructor-arg ref="ClassicMusic"/>
+    </bean>
+
 </beans>
