@@ -39,7 +39,8 @@
             class="ico.dependency_injection.lifecycrle.Life"
             init-method="MyInitMethod"
             destroy-method="MyDestroyedMethod"
-    scope="singleton">
+            factory-method="MyFactory"
+    >
     </bean>
 
 

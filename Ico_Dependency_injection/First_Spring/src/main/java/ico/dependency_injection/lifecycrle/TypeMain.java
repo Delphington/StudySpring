@@ -6,6 +6,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
  class Life {
     private String name = "d";
+    private Life(){}
+
+    public static Life MyFactory(){
+        return new Life();
+    }
+
 
     public void MyInitMethod(){
         System.out.println("MyInitMethod");
@@ -23,6 +29,5 @@ public class TypeMain {
                     "applicationContext.xml"
             );
             Life life = context.getBean("lifeC", Life.class);
-
     }
 }
