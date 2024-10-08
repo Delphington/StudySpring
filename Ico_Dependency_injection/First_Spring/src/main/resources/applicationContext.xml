@@ -27,10 +27,19 @@
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
     <!-- Для создания зависимости через Setter   -->
     <bean id="PlayerMusic"
-          class="ico.dependency_injection.PlayerMusic">
-        <property name="music" ref  = "ClassicMusic"/>
+          class="ico.dependency_injection.PlayerMusic"
+          scope="prototype">
+        <property name="music" ref="ClassicMusic"/>
         <property name="time" value="${playerMusic.time}"/>
-        <!-- Spring значет про camelCase, и ое певередет   setMusic в music -->
+    </bean>
+
+
+    <bean
+            id="lifeC"
+            class="ico.dependency_injection.lifecycrle.Life"
+            init-method="MyInitMethod"
+            destroy-method="MyDestroyedMethod"
+    scope="singleton">
     </bean>
 
 

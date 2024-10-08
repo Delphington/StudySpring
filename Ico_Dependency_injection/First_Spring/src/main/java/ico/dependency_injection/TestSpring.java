@@ -25,5 +25,14 @@ public class TestSpring {
         System.out.println(playerMusic.getMusic());  // классическая ClassicMusic
         System.out.println(playerMusic.getTime());  // классическая ClassicMusic
 
+        //--------------------------------------------------
+        //Дефолтный паттерн
+        PlayerMusic playerMusic1 = context.getBean("PlayerMusic", PlayerMusic.class);
+        PlayerMusic playerMusic2 = context.getBean("PlayerMusic", PlayerMusic.class);
+        System.out.println(playerMusic1==playerMusic2); //true
+        // {меняем: class="ico.dependency_injection.PlayerMusic"
+        //          scope="prototype"} ->  false
+
+
     }
 }
