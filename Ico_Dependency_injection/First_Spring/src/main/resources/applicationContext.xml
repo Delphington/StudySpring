@@ -6,42 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
-    <bean id="testBean"
-          class="ico.dependency_injection.TestBean">
-        <constructor-arg value="Neil"/>
-    </bean>
 
-    <!-- Для создания класса     -->
-    <bean id="ClassicMusic"
-          class="ico.dependency_injection.ClassicMusic">
-    </bean>
-
-    <!--Вот это добавили, чтобы в ручную не создавать-->
-    <!--
-    <bean id="PlayerMusic"
-          class="ico.dependency_injection.PlayerMusic">
-        <constructor-arg ref="ClassicMusic"/>
-    </bean>
-    -->
-    <!-- Для значения из файла   -->
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
-    <!-- Для создания зависимости через Setter   -->
-    <bean id="PlayerMusic"
-          class="ico.dependency_injection.PlayerMusic"
-          scope="prototype">
-        <property name="music" ref="ClassicMusic"/>
-        <property name="time" value="${playerMusic.time}"/>
-    </bean>
-
-
-    <bean
-            id="lifeC"
-            class="ico.dependency_injection.lifecycrle.Life"
-            init-method="MyInitMethod"
-            destroy-method="MyDestroyedMethod"
-            factory-method="MyFactory"
-    >
-    </bean>
-
+    <context:component-scan base-package="ico.dependency_injection.Annotation"/>
 
 </beans>
