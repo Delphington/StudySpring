@@ -1,4 +1,4 @@
-package ico.dependency_injection.AnotationAtowired;
+package ico.dependency_injection.Qualifier;
 
 
 import org.springframework.stereotype.Component;

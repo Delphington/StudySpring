@@ -7,6 +7,12 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="ico.dependency_injection.Annotation"/>
+    <!--  <context:component-scan base-package="ico.dependency_injection.Annotation"/> -->
+
+    <!-- autoWired -->
+    <!-- <context:component-scan base-package="ico.dependency_injection.AnotationAtowired"/> -->
+
+    <context:component-scan base-package="ico.dependency_injection.Qualifier"/>
+
 
 </beans>
