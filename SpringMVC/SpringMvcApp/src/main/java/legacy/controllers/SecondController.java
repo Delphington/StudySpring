@@ -1,4 +1,4 @@
-package dev.delphington.springcourse.controllers;
+package legacy.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
