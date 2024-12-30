@@ -1,4 +1,4 @@
-package dev.delphington.springcourse;
+package legacy;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,6 @@ public class HelloController {
 
     @GetMapping("/hello-world")
     public String sayHello() {
-        return "hello_world";
+        return "/WEB-INF/legacy/hello_world.html";
     }
 }
