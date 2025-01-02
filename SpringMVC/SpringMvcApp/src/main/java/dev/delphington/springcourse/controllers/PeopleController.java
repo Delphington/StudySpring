@@ -2,9 +2,12 @@ package dev.delphington.springcourse.controllers;
 
 import dev.delphington.springcourse.dao.PersonDAO;
 import dev.delphington.springcourse.models.Person;
+import jakarta.validation.Valid;
+import jdk.internal.org.jline.keymap.BindingReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -34,16 +37,42 @@ public class PeopleController {
     }
 
     @GetMapping("/new")
-    public String newPerson(@ModelAttribute("person") Person person){
+    public String newPerson(@ModelAttribute("person") Person person) {
         //Вводим данные для человека
         return "people/new";
     }
 
     @PostMapping
-    public String create(@ModelAttribute("person") Person person){
+    public String create(@ModelAttribute("person") @Valid Person person,
+                         BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "people/new"; //возвращаем туже самую форму
+            //но ошибки будут показываться с помощью таймлифа
+        }
+
         //В person - пришли заполненные данные с формы
         personDAO.save(person);
         //Сохраняем данные в бд
         return "redirect:/people";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("person", personDAO.show(id));
+        return "people/edit";
+    }
+
+
+    @PostMapping("/{id}")
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
+        personDAO.update(id, person);
+        return "redirect:/people";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        personDAO.delete(id);
+        return "redirect:/people";
+    }
+
 }
