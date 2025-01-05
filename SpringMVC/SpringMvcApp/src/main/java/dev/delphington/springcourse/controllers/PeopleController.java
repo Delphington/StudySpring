@@ -1,7 +1,8 @@
 package dev.delphington.springcourse.controllers;
 
-import dev.delphington.springcourse.dao.PersonDAO;
 import dev.delphington.springcourse.models.Person;
+import dev.delphington.springcourse.services.ItemService;
+import dev.delphington.springcourse.services.PeopleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,17 +14,26 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonDAO personDAO;
+    @Autowired
+    private final PeopleService peopleService;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    private final ItemService itemService;
+
+    public PeopleController(PeopleService peopleService, ItemService itemService) {
+        this.peopleService = peopleService;
+        this.itemService = itemService;
     }
+
 
     @GetMapping()
     public String index(Model model) {
         // Получим всех людей из DAO и отобразим
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", peopleService.findAll());
+        itemService.findByName("TV");
+        itemService.findByOwner(peopleService.findAll().get(0));
+
+        peopleService.test();
         return "people/index";
     }
 
@@ -31,7 +41,7 @@ public class PeopleController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         // Получим человека по id
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", peopleService.findOne(id));
         return "people/show";
     }
 
@@ -44,33 +54,33 @@ public class PeopleController {
     @PostMapping
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "people/new"; //возвращаем туже самую форму
             //но ошибки будут показываться с помощью таймлифа
         }
 
         //В person - пришли заполненные данные с формы
-        personDAO.save(person);
+        peopleService.save(person);
         //Сохраняем данные в бд
         return "redirect:/people";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", peopleService.findOne(id));
         return "people/edit";
     }
 
 
     @PostMapping("/{id}")
     public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
-        personDAO.update(id, person);
+        peopleService.update(id, person);
         return "redirect:/people";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        personDAO.delete(id);
+        peopleService.delete(id);
         return "redirect:/people";
     }
 
