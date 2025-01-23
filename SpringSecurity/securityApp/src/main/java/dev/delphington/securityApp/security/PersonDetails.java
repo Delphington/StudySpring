@@ -10,6 +10,7 @@ import java.util.Collection;
 @Getter
 public class PersonDetails implements UserDetails {
     //Нужен чтобы получать данные инденфицированного пользователя
+
     private final Person person;
 
     public PersonDetails(Person person) {

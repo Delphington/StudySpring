@@ -1,17 +1,21 @@
 package dev.delphington.securityApp.models;
 
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Person")
 @Setter
 @NoArgsConstructor
 @ToString
+@Getter
 public class Person {
 
     @Id
@@ -20,6 +24,7 @@ public class Person {
     private int id;
 
     @Column(name = "username")
+    @NotEmpty(message = "поле не должно быть пустым")
     private String username;
 
     @Column(name = "year_of_birth")
@@ -31,22 +36,6 @@ public class Person {
     public Person(String username, int yearOfBirth) {
         this.username = username;
         this.yearOfBirth = yearOfBirth;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }
 
