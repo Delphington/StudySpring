@@ -1,5 +1,6 @@
 package dev.delphington.springcourse.controllers;
 
+import dev.delphington.springcourse.dao.PersonDAO;
 import dev.delphington.springcourse.models.Person;
 import dev.delphington.springcourse.services.ItemService;
 import dev.delphington.springcourse.services.PeopleService;
@@ -14,14 +15,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/people")
 public class PeopleController {
 
-    @Autowired
     private final PeopleService peopleService;
 
-    @Autowired
-    private final ItemService itemService;
+    private final PersonDAO personDAO;
 
-    public PeopleController(PeopleService peopleService, ItemService itemService) {
+
+    private final ItemService itemService;
+    @Autowired
+    public PeopleController(PeopleService peopleService, PersonDAO personDAO, ItemService itemService) {
         this.peopleService = peopleService;
+        this.personDAO = personDAO;
         this.itemService = itemService;
     }
 
@@ -33,7 +36,8 @@ public class PeopleController {
         itemService.findByName("TV");
         itemService.findByOwner(peopleService.findAll().get(0));
 
-        peopleService.test();
+        personDAO.testNPlu1();
+
         return "people/index";
     }
 

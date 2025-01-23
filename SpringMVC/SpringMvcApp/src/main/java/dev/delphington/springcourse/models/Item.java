@@ -25,4 +25,13 @@ public class Item {
     Person owner;
     @Column(name = "item_name")
     String itemName;
+
+    @Override
+    public String toString() {
+        return "Item{" +
+               "id=" + id +
+               ", ownerId=" + owner.getId() +
+               ", itemName='" + itemName + '\'' +
+               '}';
+    }
 }

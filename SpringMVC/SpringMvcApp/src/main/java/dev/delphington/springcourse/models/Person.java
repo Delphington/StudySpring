@@ -9,7 +9,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.apachecommons.CommonsLog;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -38,7 +42,17 @@ public class Person {
     @Column(name = "email")
     private String email;
 
+
     @OneToMany(mappedBy = "owner")
     private List<Item> items;
 
+
+    @Column(name = "date_od_birth")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")   // дд/мм/гг автоматический парсир
+    private Date dateOfBirth;
+
+    @Column(name = "create_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 }
