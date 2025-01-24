@@ -29,9 +29,15 @@ public class PersonService {
         return personRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Person findOne(int id) {
         Optional<Person> foundPerson = personRepository.findById(id);
         return foundPerson.orElseThrow(PersonNotFoundException::new);
+    }
+
+    @Transactional
+    public void save(Person person) {
+        personRepository.save(person);
     }
 
 }
