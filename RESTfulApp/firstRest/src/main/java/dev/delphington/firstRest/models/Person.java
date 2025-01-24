@@ -5,12 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Setter
-@Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "Person")
+@Table(name = "person")
 public class Person {
+    @Override
+    public String toString() {
+        return "Person{" +
+               "id=" + id +
+               ", name='" + name + '\'' +
+               ", age=" + age +
+               ", email='" + email + '\'' +
+               '}';
+    }
 
     @Id
     @Column(name = "id")
@@ -26,4 +35,19 @@ public class Person {
     @Column(name = "email")
     private String email;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

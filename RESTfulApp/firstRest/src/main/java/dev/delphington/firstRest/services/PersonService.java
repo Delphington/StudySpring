@@ -2,6 +2,7 @@ package dev.delphington.firstRest.services;
 
 import dev.delphington.firstRest.models.Person;
 import dev.delphington.firstRest.repositories.PersonRepository;
+import dev.delphington.firstRest.util.PersonNotFoundException;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class PersonService {
 
     public Person findOne(int id) {
         Optional<Person> foundPerson = personRepository.findById(id);
-        return foundPerson.orElse(null);
+        return foundPerson.orElseThrow(PersonNotFoundException::new);
     }
 
 }
