@@ -6,7 +6,7 @@ spring:
     name: securityApp
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/postgres # This is used first, since it's earlier
+    url: jdbc:postgresql://localhost:5437/students # This is used first, since it's earlier
     username: postgres
     password: postgres
   jpa:

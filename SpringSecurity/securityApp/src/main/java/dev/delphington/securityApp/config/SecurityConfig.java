@@ -4,6 +4,7 @@ import dev.delphington.securityApp.servies.PersonDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PersonDetailsService personDetailsService;
@@ -21,33 +23,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.personDetailsService = personDetailsService;
     }
 
-    //свою форму
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //Сюда поппадает http - зарпрос
-        //Конфигурирус сам Spring Security
-        //Конфигурируем авторизацию
-
-        http.
-                authorizeRequests()
-                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll() //Эти странички доступны всем
-                .anyRequest().authenticated().and()
-                .formLogin().
-                loginPage("/auth/login") // Какую страничку хотим показать
-                .loginProcessingUrl("/process_login") // куда будут отправленны данные
-                .defaultSuccessUrl("/hello") //Хотим куда перенаправил, после успешной аутентификации
-                .failureUrl("/auth/login?error") //перевод на страницу, если аутентификация неуспешна
+        // конфигурируем сам Spring Security
+        // конфигурируем авторизацию
+        http.authorizeRequests()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
+                .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
-                .logout()  //При переходе на эту строничку будет Logout
-                .logoutUrl("/logout")  // будет удаляться из сессии и стираться cookies
+                .formLogin().loginPage("/auth/login")
+                .loginProcessingUrl("/process_login")
+                .defaultSuccessUrl("/hello", true)
+                .failureUrl("/auth/login?error")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/auth/login");
     }
 
-
-    //Настраиваем аутентификацию
+    // Настраиваем аутентификацию
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(personDetailsService).passwordEncoder(getPasswordEncoder());
+        auth.userDetailsService(personDetailsService)
+                .passwordEncoder(getPasswordEncoder());
     }
 
     @Bean

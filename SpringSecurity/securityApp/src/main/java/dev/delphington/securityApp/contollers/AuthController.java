@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -32,29 +31,21 @@ public class AuthController {
         return "auth/login";
     }
 
-    //В модель положет
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("person") Person person){
+    public String registrationPage(@ModelAttribute("person") Person person) {
         return "auth/registration";
     }
 
-    //куда придумат данные
     @PostMapping("/registration")
     public String performRegistration(@ModelAttribute("person") @Valid Person person,
-                                      BindingResult bindingResult){
-        // Валидатор к БД
+                                      BindingResult bindingResult) {
         personValidator.validate(person, bindingResult);
 
-        if(bindingResult.hasErrors()){
-            return "auth/registration";
-        }
+        if (bindingResult.hasErrors())
+            return "/auth/registration";
 
         registrationService.register(person);
 
         return "redirect:/auth/login";
     }
-
-
-
-
 }
