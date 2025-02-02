@@ -1,1 +1,21 @@
-d
+## Небольшие обучающие проекты
+
+### 🔩 Все технологии, используемые в проектах
+![REST](https://img.shields.io/badge/REST-API-brightgreen)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-logo-316192?logo=postgresql)](https://www.postgresql.org/)
+![JDBC](https://img.shields.io/badge/JDBC-Template-red)
+[![Spring Web](https://img.shields.io/badge/Spring%20Web-logo-6DB33F?logo=spring)](https://spring.io/projects/spring-framework)
+[![Spring Core](https://img.shields.io/badge/Spring%20Core-logo-6DB33F?logo=spring)](https://spring.io/projects/spring-framework)
+[![Spring MVC](https://img.shields.io/badge/Spring%20MVC-logo-6DB33F?logo=spring)](https://spring.io/projects/spring-framework)
+[![Hibernate](https://img.shields.io/badge/Hibernate-logo-59666C?logo=hibernate)](https://hibernate.org/)
+[![Spring JPA](https://img.shields.io/badge/Spring%20JPA-logo-6DB33F?logo=spring)](https://spring.io/projects/spring-data-jpa)
+[![Spring Security](https://img.shields.io/badge/Spring%20Security-logo-6DB33F?logo=spring)](https://spring.io/projects/spring-security)
+[![Apache Maven](https://img.shields.io/badge/Apache%20Maven-logo-C71A36?logo=apache-maven)](https://maven.apache.org/)
+[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-logo-005C00?logo=thymeleaf)](https://www.thymeleaf.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-logo-6DB33F?logo=spring)](https://spring.io/projects/spring-boot)
+[![Docker](https://img.shields.io/badge/Docker-logo-2496ED?logo=docker)](https://www.docker.com/)
+[![Postman](https://img.shields.io/badge/Postman-logo-FF6C37?logo=postman)](https://www.postman.com/)
+[![Jackson](https://img.shields.io/badge/Jackson-logo-black?logo=jackson)](https://github.com/FasterXML/jackson)
+[![Lombok](https://img.shields.io/badge/Lombok-logo-47a1c6?logo=lombok)](https://projectlombok.org/)
+![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?logo=apache-tomcat&logoColor=black)
+[![Apache Maven](https://img.shields.io/badge/Apache%20Maven-logo-C71A36?logo=apache-maven)](https://maven.apache.org/)
